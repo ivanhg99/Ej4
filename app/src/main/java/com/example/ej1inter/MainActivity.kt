@@ -3,32 +3,42 @@ package com.example.ej1inter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    var randomInt = 0
+    lateinit var diceImage: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        diceImage = findViewById(R.id.dice_image)
         val rollButton: Button = findViewById(R.id.roll_button)
         rollButton.setOnClickListener { rollDice() }
-        val rollButton1: Button = findViewById(R.id.roll_button1)
-        rollButton1.setOnClickListener { rollDi() }
     }
-
-    private fun rollDice() {
-        randomInt = Random().nextInt(6) + 1
-        val resultText: TextView = findViewById(R.id.result_text)
-        resultText.text = randomInt.toString()
-    }
-
-    private fun rollDi() {
-        val resultText: TextView = findViewById(R.id.result_text)
-        if (randomInt != 6 && randomInt != 0) {
-            val randomInt = randomInt + 1
-            resultText.text = randomInt.toString()
+    private fun rollDice(){
+        val randomInt = (1..6).random()
+        val diceImage: ImageView = findViewById(R.id.dice_image)
+        val choseDice = when (randomInt) {
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
         }
+        diceImage.setImageResource(choseDice)
+        val randomInt1 = (1..6).random()
+        val diceImage1: ImageView = findViewById(R.id.dice_image1)
+        val choseDice1 = when (randomInt1) {
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
+        }
+        diceImage1.setImageResource(choseDice1)
     }
 }
